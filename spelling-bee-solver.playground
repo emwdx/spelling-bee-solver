@@ -1,0 +1,134 @@
+/*
+ This Swift program uses a quasi-brute-force method of solving the New York Times daily puzzle: Spelling Bee. 
+ 
+ The game consists of a seven cell hive of hexagons, each containing a single letter. The player must create words of more than three letters from the letters in the cell, each containing the letter in the center cell of the hive. Letters can be used more than once. 
+ 
+ The idea of the program below is to use the auto-complete capability built into iOS to check random combinations of letters for words containing the letters in the hive. The print statements at the bottom of the program list the words that are 4, 5, and more than 5 letters in length. 
+ 
+ To search for words that are not in English, the two letter code after language can be changed. The list of codes at https://en.m.wikipedia.org/wiki/List_of_ISO_639-1_codes is a way to find the correct code for another language, though not all languages have autocomplete in iOS.
+ 
+ It goes without saying that this takes most of the fun out of the game. This was a feasibility study to see if the autocomplete function would be an effective way to reduce the search space and find a solution in a short amount of time. The test puzzle was solved in just over ten seconds.
+ 
+ Please let me know if you have any questions.
+ Evan
+ Twitter: @emwdx
+ */
+
+import UIKit
+
+//This is the list of letters in the game. The first element in the list needs to be the center letter.
+let letterList = ["E","L","M","O","C","X","P"]
+
+//This was the optimal number of letters to randomly combine to search for auto-completed words.
+let randomGuessLength = 4
+
+//The number of words to find in the list.
+let numberOfWordsToFind = 26
+
+
+var wordChecker = UITextChecker()
+let wordRange = NSRange(0..<randomGuessLength)
+
+//This array is for storing the words found.
+var tempWordList = [String]()
+
+//These are the three helper functions this program uses to generate a correct word list. 
+
+//This checks to see if a given word is made up of only words from the letters in the hive.
+func checkWordFromLetterList(word:String,letters:[String])->Bool{
+    
+    //For each letter in word...
+    for letter in word{
+        
+        //...check to see if the letter is contained within the letters array.
+        if !letters.contains(String(letter)){
+            //If not, return false. This means the word found does not count as a solution to the puzzle.
+            return false
+        }
+        
+    }
+    return true
+}
+
+//This function checks to see if the word contains the center letter. This could be done with the first function as well, but I decided to include it anyway.
+func wordContainsCenterLetter(word:String, letter:String)->Bool{
+    if let charIndex = word.range(of:letter){
+        return true
+    }
+    return false
+}
+
+//This function picks a random number of letters from the letterList in the hive.
+func makeWordFromLetterList(letterList:[String], length:Int)->String{
+    var word:String = ""
+    for i in 0...(length-1){
+        word += letterList[Int.random(in: 0...letterList.count-1)]
+        
+    }
+    print(word)
+    return word
+}
+
+//Until the number of words to find have been found...
+while tempWordList.count < numberOfWordsToFind{
+    //Make a list of possible words that include a random collection of letters from the hive.
+    let possibleWords = wordChecker.completions(forPartialWordRange: wordRange, in: makeWordFromLetterList(letterList: letterList, length: randomGuessLength), language: "en")
+    
+    
+    //For each of these words...
+    for word in possibleWords!{
+        
+        //If the word is made up of only letters from the hive...
+        //...and the word contains the center letter...
+        //...and the word is at least three letters long...
+        if(checkWordFromLetterList(word:word.uppercased(),letters:letterList) && wordContainsCenterLetter(word:word.uppercased(),letter:letterList[0]) && word.count > 3){
+            
+            //...and the word is not already in the list of words found,
+            if(!(tempWordList.contains(word))){
+                
+                //add the word to the list.
+                tempWordList.append(word)
+                }
+        }
+    }
+}
+
+//Now that the list of words has been found, print out the words that are four letters long,
+var wordLengthList = [String]()
+for word in tempWordList{
+    
+    if(word.count == 4){
+        wordLengthList.append(word)
+    }
+}
+print(wordLengthList)
+
+    //...then five letters long...
+wordLengthList = []
+for word in tempWordList{
+    if(word.count == 5){
+        wordLengthList.append(word)
+    }
+}
+print(wordLengthList)
+
+//...then six letters long...
+wordLengthList = []
+for word in tempWordList{
+    if(word.count == 6){
+        wordLengthList.append(word)
+    }
+}
+
+print(wordLengthList)
+
+//...and then more than six letters long.
+wordLengthList = []
+for word in tempWordList{
+    if(word.count > 6){
+        wordLengthList.append(word)
+    }
+}
+print(wordLengthList)
+
+//And that's it!
