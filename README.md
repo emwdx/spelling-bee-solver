@@ -7,7 +7,7 @@ The game consists of a seven cell hive of hexagons, each containing a single let
  
  To search for words that are not in English, the two letter code after language can be changed. The list of codes at https://en.m.wikipedia.org/wiki/List_of_ISO_639-1_codes is a way to find the correct code for another language, though not all languages have autocomplete in iOS.
  
- It goes without saying that this takes most of the fun out of the game. This was a feasibility study to see if the autocomplete function would be an effective way to reduce the search space and find a solution in a short amount of time. The test puzzle was solved in just over ten seconds.
+ It goes without saying that this takes most of the fun out of the game. While it does get the majority of the words, it does not necessarily find all of them. This was a feasibility study to see if the autocomplete function would be an effective way to reduce the search space and find a solution in a short amount of time. The test puzzle was solved in just over ten seconds to get to genius level.
  
  Please let me know if you have any questions.\
  Evan \
