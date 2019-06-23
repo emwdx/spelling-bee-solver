@@ -1,5 +1,5 @@
 # spelling-bee-solver
-This is a Swift Playground file that solve the New York Times Spelling Bee puzzle. 
+This is a Swift Playground file that solves the New York Times Spelling Bee puzzle. 
 
 The game consists of a seven cell hive of hexagons, each containing a single letter. The player must create words of more than three letters from the letters in the cell, each containing the letter in the center cell of the hive. Letters can be used more than once. 
  
