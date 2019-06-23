@@ -1,7 +1,7 @@
 # spelling-bee-solver
 This is a Swift Playground file that solves the New York Times Spelling Bee puzzle. 
 
-The game consists of a seven cell hive of hexagons, each containing a single letter. The player must create words of more than three letters from the letters in the cell, each containing the letter in the center cell of the hive. Letters can be used more than once. 
+The game consists of a seven cell hive of hexagons, each containing a single letter. The player must create words of more than three letters from the letters in the hive, each containing the letter in the center cell of the hive. Letters can be used more than once. 
  
  The idea of the program below is to use the auto-complete capability built into iOS to check random combinations of letters for words containing the letters in the hive. The print statements at the bottom of the program list the words that are 4, 5, and more than 5 letters in length. 
  
