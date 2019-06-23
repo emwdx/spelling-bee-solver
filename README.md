@@ -9,7 +9,7 @@ The game consists of a seven cell hive of hexagons, each containing a single let
  
  It goes without saying that this takes most of the fun out of the game. This was a feasibility study to see if the autocomplete function would be an effective way to reduce the search space and find a solution in a short amount of time. The test puzzle was solved in just over ten seconds.
  
- Please let me know if you have any questions.
- Evan
+ Please let me know if you have any questions.\
+ Evan \
  Twitter: @emwdx
  
